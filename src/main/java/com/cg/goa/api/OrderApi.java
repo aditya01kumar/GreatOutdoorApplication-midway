@@ -37,7 +37,7 @@ public class OrderApi {
 		// response;
 	}
 	/*
-	 * to list allorders
+	 * to list all orders
 	 * return : list
 	 * params : NIL
 	 */
@@ -72,7 +72,7 @@ public class OrderApi {
 
 	}
 	/*
-	 * to updateDate id, dates
+	 * to update Date id, dates
 	 * return : Boolean
 	 * params : orderId, dispatchDate,arrivalDate
 	 */
@@ -84,7 +84,7 @@ public class OrderApi {
 
 	}
 	/*
-	 * to deleteOrderByorderId
+	 * to delete Order By orderId
 	 * return : Boolean
 	 * params : orderId
 	 */

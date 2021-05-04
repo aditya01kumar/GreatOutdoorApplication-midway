@@ -72,7 +72,6 @@ public class CartApi {
 	@PutMapping
 	public ResponseEntity<CartItemModel> updateCart(@RequestBody CartItemModel cart) throws CartException {
 		cart = cartservice.updateCart(cart);
-		// return new ResponseEntity<>(cart, HttpStatus.OK);
 		return ResponseEntity.ok(cart);
 	}
 	/*

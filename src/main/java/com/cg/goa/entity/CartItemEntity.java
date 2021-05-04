@@ -1,7 +1,6 @@
 package com.cg.goa.entity;
 
 import java.io.Serializable;
-//import java.util.Map;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

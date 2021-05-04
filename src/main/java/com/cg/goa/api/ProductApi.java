@@ -105,7 +105,7 @@ public class ProductApi {
 	}
 	
 	/*
-	 * to search product name
+	 * to search product name by keyword
 	 * return : product name
 	 * params : keyword
 	 */

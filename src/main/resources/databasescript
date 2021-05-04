@@ -1,0 +1,152 @@
+create sequence HIBERNATE_SEQUENCE;
+	
+create table customer_entity
+(customer_id   number(19)   constraint Customer_CustomerId_pk  primary key,
+customer_name  varchar2(50) constraint Customer_CustomerName   not null,
+mobile_no      varchar2(50) constraint Customer_mobileNo_nn    not null,
+email         varchar2(50) constraint Customer_email_nn       not null,
+role          varchar2(30) constraint Customer_role_nn        not null
+);
+
+
+Alter table customer_entity Add address_id varchar2(50);
+Alter table customer_entity Add building_name varchar2(50);
+Alter table customer_entity Add street_no varchar2(50);
+Alter table customer_entity Add area varchar2(50);
+Alter table customer_entity Add city varchar2(50);
+Alter table customer_entity Add state varchar2(50);
+Alter table customer_entity Add zip   number(19);
+
+
+
+Insert into customer_entity (customer_id,customer_name,mobile_no,email,role) values (101, 'Akash','987654321','aks@gmail.com','seller');
+Insert into customer_entity (customer_id,customer_name,mobile_no,email,role) values (102, 'Prakhar','987654351','as@gmail.com','buyer');
+
+create table user_data
+(user_id       number(19)   constraint UserData_userId_pk primary key ,
+user_name      varchar2(50) constraint UserData_userName_nn not null,
+user_type      varchar2(50) constraint UserData_userType_nn not null,
+user_password  varchar2(50) constraint UserData_userPassword_un UNIQUE);
+
+Insert into user_data(user_id,user_name,user_type,user_password)values(101,'Vikash','admin','groot');
+Insert into user_data(user_id,user_name,user_type,user_password)values(102,'Ravi','user','froot');
+
+create table order_entity
+(order_id         number(19)       constraint  OrderEntity_orderId_pk           primary key,
+user_id           varchar2(50)     constraint  OrderEntity_userId_nn            not null,
+total_price       number(10,2)     constraint  OrderEntity_totalPrice_nn        not null,
+total_quantity    number(19)       constraint  OrderEntity_totalQuantity_nn     not null,
+dispatch_date     date             constraint  OrderEntity_dispatchDate_nn      not null,
+delivery_date     date             constraint  OrderEntity_deliveryDate_nn      not null
+);
+
+insert into order_entity (order_id,total_price,total_quantity,dispatch_date,delivery_date,user_id) values(1,1200.0,10,'21-apr-2021','25-apr-2021','101');
+insert into order_entity(order_id,total_price,total_quantity,dispatch_date,delivery_date,user_id) values(2,1500.0,15,'20-apr-2021','23-apr-2021','103');
+insert into order_entity(order_id,total_price,total_quantity,dispatch_date,delivery_date,user_id)values(3,1600.0,80,'19-apr-2021','22-apr-2021','102');
+insert into order_entity(order_id,total_price,total_quantity,dispatch_date,delivery_date,user_id) values(4,900.0,8,'18-apr-2021','21-apr-2021','104');
+insert into order_entity (order_id,total_price,total_quantity,dispatch_date,delivery_date,user_id) values(5,599.0,6,'17-apr-2021','20-apr-2021','105');
+
+
+create table cart_item_entity
+(cart_id        number(19)   constraint cartitem_cartId_pk primary key,
+user_id           number(19)  constraint  cartitem_userId_nn     not null,
+cart_total_price number(10,2)  constraint  cartitem_ctp_nn not null,
+total_quantity  number(19) constraint  cartitem_tnm_nn not null
+);
+
+
+insert into cart_item_entity (cart_id,user_id,cart_total_price,total_quantity) values (1,11,2500.01,5);
+insert into cart_item_entity (cart_id,user_id,cart_total_price,total_quantity) values (2,11,2500.01,5);
+insert into cart_item_entity (cart_id,user_id,cart_total_price,total_quantity) values (3,13,2500.01,5);
+
+
+
+create table product_entity
+(product_id      number(19) constraint ProductEntity_productId_pk primary key,
+product_name     varchar2(50) constraint ProductEntity_productName_nn not null,
+price           number(10,2) constraint ProductEntity_price_nn not null,
+image           varchar2(50) constraint ProductEntity_image_nn not null,
+color           varchar2(50) constraint ProductEntity_color_nn not null,
+category        varchar2(50) constraint ProductEntity_category_nn not null,
+quantity        number(19)   constraint ProductEntity_quantity_nn not null,
+manufacturer    varchar2(50) constraint ProductEntity_manufacturer_nn not null,
+specification   varchar2(50) constraint ProductEntity_specification_nn not null,
+order_id         number(19) constraint ProductEntity_orderId_fk REFERENCES order_entity(order_id),
+cart_id         number(19)  constraint  ProductEntity_cartId_fk REFERENCES cart_item_entity(cart_id)
+);
+
+
+Insert into product_entity(product_id,product_name,price,image,color,category,quantity,manufacturer,specification,order_id,cart_id) values (11,'Cello',685.0,'png','Gold','Bottle',5,'CelloLtd','Thermosteel',1,1);
+Insert into product_entity(product_id,product_name,price,image,color,category,quantity,manufacturer,specification,order_id,cart_id) values (12,'cello',750.0,'png','steel','jug',5,'CelloLtd','themo',2,2);
+Insert into product_entity(product_id,product_name,price,image,color,category,quantity,manufacturer,specification,order_id,cart_id) values (13,'maruti',750.0,'png','steel','jug',5,'CelloLtd','themo',3,3);
+
+
+create table address_entity	
+(address_id     number(19)    constraint Address_addressId_pk primary key,
+building_no     number(19)   constraint  Address_buildingNo_nn not null,
+street_name     varchar2(50) constraint  Address_nn not null,
+area           varchar2(50) constraint  Address_area_nn not null,
+city           varchar2(50) constraint  Address_city_nn not null,
+state          varchar2(20) constraint  Address_state_nn not null,
+zip             number(19) constraint   Address_zip_nn not null
+);
+
+Insert Into   address_entity(address_id,building_no,street_name,area,city,state,zip) values(101,23,'saketcolony','sector107','greaternoida','uttarpradesh',201302);
+
+create table growth_report_entity
+(growth_report_id   number(19)    primary key,
+currentdate       date           not null, 
+revenue           number(10,2)  not null,
+amount_change      number(10,2)  not null ,
+percentage_growth  number(10,2)  not null,
+color_code         varchar2(50)  not null);
+
+Insert Into growth_report_entity(growth_report_id,currentdate,revenue,amount_change,percentage_growth,color_code)values(101,Date'2021-08-12',100.0,200.0,34.0,'red');
+Insert Into growth_report_entity(growth_report_id,currentdate,revenue,amount_change,percentage_growth,color_code)values(102,Date'2021-10-23',500.0,900.0,96.0,'blue');
+
+
+
+
+   
+
+create table sales_report_entity
+(sales_report_id  number(19) constraint SalesReport_salesReportId_pk primary key,
+product_id        varchar2(30)   not null  ,
+product_name     varchar2(30) constraint SalesReport_productName_nn not null,
+quantity_sold    number(10) constraint SalesReport_quantitySold_nn not null,
+total_sale      number(10,2)  constraint SalesReport_totalSale_nn not null);
+
+
+Insert Into sales_report_entity(sales_report_id,product_id,product_name,quantity_sold,total_sale)values(101,'13','dettol',120,1200.0);
+Insert Into sales_report_entity(sales_report_id,product_id,product_name,quantity_sold,total_sale)values(102,'14','dettol',150,1200.0);
+
+
+
+create table wishlist_item_entity
+(wishlist_id    number(19) primary key,
+user_id         varchar2(50) not null,
+product_id      varchar2(50)  not null
+);
+
+Insert Into wishlist_item_entity(wishlist_id,user_id,product_id)values(101,'110','11');
+Insert Into wishlist_item_entity(wishlist_id,user_id,product_id)values(102,'111','12');
+Insert Into wishlist_item_entity(wishlist_id,user_id,product_id)values(103,'110','11');
+Insert Into wishlist_item_entity(wishlist_id,user_id,product_id)values(104,'111','12');
+Insert Into wishlist_item_entity(wishlist_id,user_id,product_id)values(104,'111','13');
+
+commit;
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+drop table customer_entity;
+drop table user_data;
+drop table address_entity;
+drop table growth_report_entity;
+drop table cart_item_entity;
+drop table sales_report_entity;
+drop table wishlist_item_entity;
+drop table order_entity;
+drop table product_entity;
+
+
+

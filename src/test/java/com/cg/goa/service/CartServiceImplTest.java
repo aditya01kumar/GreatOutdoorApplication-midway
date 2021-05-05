@@ -28,7 +28,10 @@ public class CartServiceImplTest {
 	@Mock
 	private ICartRepository cartrepo;
 
-	@InjectMocks /* injecting cart repository marked as @Mock into Cart service implementation */
+	@InjectMocks /* 
+				  *injecting cart repository marked as @Mock into Cart service 
+				  *implementation
+				  */
 	private CartServiceImpl csImpl;
 	
 	

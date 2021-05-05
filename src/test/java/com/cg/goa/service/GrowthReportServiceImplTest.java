@@ -92,7 +92,7 @@ public class GrowthReportServiceImplTest {
 
 	}
 	/*
-	 * Test Case 3 - to Delete Growth Report By Id
+	 * Test Case 4 - to Delete Growth Report By Id
 	 * @throws   GrowthReportException
 	 */
 	@Test

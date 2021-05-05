@@ -26,7 +26,7 @@ public class CustomerServiceImplTest {
 	private ICustomerRepository customerrepo;
 
 	@InjectMocks /*
-					 * injecting package repository marked as @Mock into package service
+					 * injecting customer repository marked as @Mock into customer service
 					 * implementation
 					 */
 	private CustomerServiceImpl csImpl;

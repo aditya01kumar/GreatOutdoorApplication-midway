@@ -30,7 +30,7 @@ public class OrderServiceImplTest {
 	private IOrderRepository orderrepo;
 
 	@InjectMocks /*
-					 * injecting package repository marked as @Mock into package service
+					 * injecting Order repository marked as @Mock into Order service
 					 * implementation
 					 */
 	private OrderServiceImpl osImpl;

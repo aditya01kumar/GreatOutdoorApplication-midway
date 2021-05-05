@@ -27,7 +27,7 @@ public class ProductServiceImplTest {
 	private IProductRepository productrepo;
 
 	@InjectMocks /*
-					 * injecting package repository marked as @Mock into package service
+					 * injecting Product repository marked as @Mock into Product service
 					 * implementation
 					 */
 	private ProductServiceImpl psImpl;

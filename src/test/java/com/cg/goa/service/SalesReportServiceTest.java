@@ -66,7 +66,6 @@ public class SalesReportServiceTest {
 	 * test case 3- to Delete Sales Report By Id
 	 * @Sales Report Exception
 	 */
-	//Delete Report By Id Test Case
 	@Test
 	@DisplayName("SalesReportServiceImpl::delete Sales Report By Id  should delete reports in SalesReportModel ")
 	void testdeleteSalesReportByIdException() throws SalesReportException {

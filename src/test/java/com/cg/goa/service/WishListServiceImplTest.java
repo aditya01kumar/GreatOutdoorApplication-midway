@@ -27,7 +27,7 @@ public class WishListServiceImplTest {
 	private IWishlistRepository wishrepo;
 
 	@InjectMocks /*
-					 * injecting package repository marked as @Mock into package service
+					 * injecting Wishlist repository marked as @Mock into Wishlist service
 					 * implementation
 					 */
 	private WishListServiceImpl wsImpl;
